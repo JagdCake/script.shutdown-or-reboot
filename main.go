@@ -15,4 +15,7 @@ func main() {
 	var choice int = helpers.SelectMenu(menuOptions)
 
 	println(choice)
+
+	var closedApps string = helpers.CloseApps(config.AppsToClose)
+	fmt.Println(closedApps)
 }
