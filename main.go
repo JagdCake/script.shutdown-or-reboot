@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/jagdcake/shutdown-or-reboot/config"
+	"github.com/jagdcake/shutdown-or-reboot/helpers"
+)
 
 func main() {
-	fmt.Println("vim-go")
+	menuOptions := []string{
+		"Shutdown",
+		"Reboot",
+		"Cancel",
+	}
+	var choice int = helpers.SelectMenu(menuOptions)
+
+	println(choice)
 }
