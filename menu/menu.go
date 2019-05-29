@@ -1,7 +1,9 @@
 package menu
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -20,4 +22,15 @@ func CreateWith(options []string) string {
 	menuOpts := strings.Join(formattedOpts, "\n")
 
 	return menuOpts
+}
+
+func Prompt() string {
+	var input string
+
+	reader := bufio.NewScanner(os.Stdin)
+
+	reader.Scan()
+	input = reader.Text()
+
+	return input
 }
