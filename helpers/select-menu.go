@@ -21,3 +21,11 @@ func userChoice() int {
 
 	return choice
 }
+
+func SelectMenu(menuOptions []string) int {
+	printMenu(menuOptions)
+	//
+	choice := userChoice()
+
+	return choice
+}
