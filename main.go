@@ -19,7 +19,7 @@ func main() {
 	var closedApps string = helpers.CloseApps(config.AppsToClose)
 	fmt.Println(closedApps)
 
-	var shutdownLogged bool = helpers.LogShutdown()
+	var shutdownLogged bool = helpers.LogShutdown("shutdown", config.TIME_TO_SHUTDOWN)
 	if shutdownLogged {
 		fmt.Println("Shutdown has been logged in", config.LOG_FILE)
 	}

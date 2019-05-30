@@ -37,7 +37,7 @@ func shutdownDate(currentTime time.Time) string {
 	return sd
 }
 
-func LogShutdown() (shutdownLogged bool) {
+func LogShutdown(event, timeToShutdown string) (shutdownLogged bool) {
 	var err error
 	//
 	var startTime, startDate string
@@ -48,6 +48,18 @@ func LogShutdown() (shutdownLogged bool) {
 
 	var systemStart string = logging.SystemStart(startTime, startDate)
 	println(systemStart)
+	//
+	var st, sd string
+	var currentTime time.Time
+	currentTime = time.Now()
+	st, err = shutdownTime(currentTime, timeToShutdown)
+	if err != nil {
+		log.Fatal(err)
+	}
+	sd = shutdownDate(currentTime)
+
+	var systemShutdown string = logging.SystemShutdown(event, st, sd)
+	println(systemShutdown)
 
 	return true
 }
