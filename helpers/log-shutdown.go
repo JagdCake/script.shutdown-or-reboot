@@ -5,6 +5,7 @@ import (
 	"github.com/jagdcake/shutdown-or-reboot/logging"
 	"log"
 	"strings"
+	"time"
 )
 
 func systemStart() (startTime, startDate string, err error) {
@@ -14,6 +15,15 @@ func systemStart() (startTime, startDate string, err error) {
 	var ss []string = strings.Split(trimmedResult, " ")
 
 	return ss[1], ss[0], err
+}
+
+func shutdownTime(currentTime time.Time, timeToShutdown string) (string, error) {
+	var shutdownDur time.Duration
+
+	shutdownDur, err := time.ParseDuration(timeToShutdown)
+	st := currentTime.Add(shutdownDur).Format("15:04:05")
+
+	return st, err
 }
 
 func LogShutdown() (shutdownLogged bool) {
