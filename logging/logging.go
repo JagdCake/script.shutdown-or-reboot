@@ -7,3 +7,7 @@ var mkStr = fmt.Sprintf
 func SystemStart(poweredOnTime, poweredOnDate string) string {
 	return mkStr("System powered on at: %s on %s\n", poweredOnTime, poweredOnDate)
 }
+
+func SystemShutdown(event, shutdownTime, date string) string {
+	return mkStr("System %s at: %s on %s\n", event, shutdownTime, date)
+}
