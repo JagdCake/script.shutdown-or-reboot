@@ -6,6 +6,7 @@ import (
 	"github.com/jagdcake/shutdown-or-reboot/logging"
 	"github.com/jagdcake/shutdown-or-reboot/write"
 	"log"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -36,6 +37,16 @@ func shutdownDate(currentTime time.Time) string {
 	)
 
 	return sd
+}
+
+func lessThanMinUptime(uptime string) (bool, error) {
+	// if the system has been up for less than a minute, the uptime command outputs only "up", no numbers
+	numbersInUptime, err := regexp.MatchString(`\d+`, uptime)
+	if err != nil || numbersInUptime {
+		return false, err
+	}
+
+	return true, err
 }
 
 func systemUptime() string {
@@ -78,6 +89,14 @@ func LogShutdown(event, timeToShutdown, logFile string) (shutdownLogged bool) {
 	}
 	//
 	var uptime string = systemUptime()
+	lessThanMin, err := lessThanMinUptime(uptime)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if lessThanMin {
+		uptime = "up for less than a minute"
+	}
 	var systemUptime string = logging.SystemUptime(uptime)
 
 	err = write.String(systemUptime+"\n", logFile)
