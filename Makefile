@@ -11,7 +11,7 @@ test:
 	go test ./**/
 
 build:
-	go build
+	go build -o shutdown-or-reboot
 
 vet:
 	go vet
