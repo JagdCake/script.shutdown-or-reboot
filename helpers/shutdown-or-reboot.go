@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"github.com/jagdcake/shutdown-or-reboot/execute"
 	"log"
 	"time"
 )
@@ -14,7 +15,7 @@ func sleepDuration(timeToSleep string) (time.Duration, error) {
 	return sd, err
 }
 
-func ShutdownOrReboot(timeToShutdown string) {
+func ShutdownOrReboot(timeToShutdown, shutdownFlag string) {
 	var err error
 	//
 	sd, err := sleepDuration(timeToShutdown)
@@ -23,4 +24,9 @@ func ShutdownOrReboot(timeToShutdown string) {
 	}
 
 	time.Sleep(sd)
+	//
+	_, err = execute.Command("shutdown", shutdownFlag, "now")
+	if err != nil {
+		log.Fatal(err)
+	}
 }

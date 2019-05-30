@@ -16,14 +16,17 @@ func main() {
 
 	var event string
 	var timeToShutdown string
+	var shutdownFlag string
 
 	switch choice {
 	case 1:
 		event = "shutdown"
 		timeToShutdown = config.TIME_TO_SHUTDOWN
+		shutdownFlag = "-P"
 	case 2:
 		event = "reboot"
 		timeToShutdown = config.TIME_TO_REBOOT
+		shutdownFlag = "-r"
 	case 3:
 		return
 	default:
@@ -39,4 +42,6 @@ func main() {
 	if shutdownLogged {
 		fmt.Println("Shutdown has been logged in", config.LOG_FILE)
 	}
+
+	helpers.ShutdownOrReboot(timeToShutdown, shutdownFlag)
 }
