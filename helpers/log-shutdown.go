@@ -2,9 +2,9 @@ package helpers
 
 import (
 	"fmt"
-	"github.com/jagdcake/shutdown-or-reboot/execute"
-	"github.com/jagdcake/shutdown-or-reboot/logging"
-	"github.com/jagdcake/shutdown-or-reboot/write"
+	"github.com/jagdcake/script.shutdown-or-reboot/execute"
+	"github.com/jagdcake/script.shutdown-or-reboot/logging"
+	"github.com/jagdcake/script.shutdown-or-reboot/write"
 	"log"
 	"regexp"
 	"strings"

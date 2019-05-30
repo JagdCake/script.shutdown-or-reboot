@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"github.com/jagdcake/shutdown-or-reboot/execute"
+	"github.com/jagdcake/script.shutdown-or-reboot/execute"
 	"log"
 	"time"
 )

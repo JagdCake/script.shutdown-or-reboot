@@ -2,7 +2,7 @@ package helpers
 
 import (
 	"fmt"
-	"github.com/jagdcake/shutdown-or-reboot/execute"
+	"github.com/jagdcake/script.shutdown-or-reboot/execute"
 	"strings"
 )
 

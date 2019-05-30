@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/jagdcake/shutdown-or-reboot/config"
-	"github.com/jagdcake/shutdown-or-reboot/helpers"
+	"github.com/jagdcake/script.shutdown-or-reboot/config"
+	"github.com/jagdcake/script.shutdown-or-reboot/helpers"
 )
 
 func main() {

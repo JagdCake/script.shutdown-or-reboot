@@ -2,7 +2,7 @@ package helpers
 
 import (
 	"fmt"
-	"github.com/jagdcake/shutdown-or-reboot/menu"
+	"github.com/jagdcake/script.shutdown-or-reboot/menu"
 	"strconv"
 )
 
