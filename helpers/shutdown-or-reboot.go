@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"log"
 	"time"
 )
 
@@ -11,4 +12,15 @@ func sleepDuration(timeToSleep string) (time.Duration, error) {
 	}
 
 	return sd, err
+}
+
+func ShutdownOrReboot(timeToShutdown string) {
+	var err error
+	//
+	sd, err := sleepDuration(timeToShutdown)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	time.Sleep(sd)
 }
