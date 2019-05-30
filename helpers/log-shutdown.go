@@ -37,6 +37,15 @@ func shutdownDate(currentTime time.Time) string {
 	return sd
 }
 
+func systemUptime() string {
+	cmd, _ := execute.Command("uptime", "-p")
+
+	var cmdResult string = cmd.String()
+	trimmedResult := strings.TrimSpace(cmdResult)
+
+	return trimmedResult
+}
+
 func LogShutdown(event, timeToShutdown string) (shutdownLogged bool) {
 	var err error
 	//
