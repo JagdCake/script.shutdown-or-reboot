@@ -17,6 +17,7 @@ func userChoice() int {
 	var choice int
 
 	input = menu.Prompt()
+	// no need to handle string conversion errors, the switch statement in ../main.go is enough
 	choice, _ = strconv.Atoi(input)
 
 	return choice
