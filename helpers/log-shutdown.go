@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"fmt"
 	"github.com/jagdcake/shutdown-or-reboot/execute"
 	"github.com/jagdcake/shutdown-or-reboot/logging"
 	"log"
@@ -24,6 +25,16 @@ func shutdownTime(currentTime time.Time, timeToShutdown string) (string, error) 
 	st := currentTime.Add(shutdownDur).Format("15:04:05")
 
 	return st, err
+}
+
+func shutdownDate(currentTime time.Time) string {
+	sd := fmt.Sprintf("%d-%02d-%02d", // "%02d" adds a 0 as a prefix if the number has less than 2 digits
+		currentTime.Year(),
+		currentTime.Month(),
+		currentTime.Day(),
+	)
+
+	return sd
 }
 
 func LogShutdown() (shutdownLogged bool) {
