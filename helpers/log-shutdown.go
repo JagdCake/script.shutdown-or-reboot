@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/jagdcake/shutdown-or-reboot/execute"
 	"github.com/jagdcake/shutdown-or-reboot/logging"
+	"github.com/jagdcake/shutdown-or-reboot/write"
 	"log"
 	"strings"
 	"time"
@@ -46,7 +47,7 @@ func systemUptime() string {
 	return trimmedResult
 }
 
-func LogShutdown(event, timeToShutdown string) (shutdownLogged bool) {
+func LogShutdown(event, timeToShutdown, logFile string) (shutdownLogged bool) {
 	var err error
 	//
 	var startTime, startDate string
@@ -56,7 +57,10 @@ func LogShutdown(event, timeToShutdown string) (shutdownLogged bool) {
 	}
 
 	var systemStart string = logging.SystemStart(startTime, startDate)
-	println(systemStart)
+	err = write.String(systemStart, logFile)
+	if err != nil {
+		log.Fatal(err)
+	}
 	//
 	var st, sd string
 	var currentTime time.Time
@@ -68,12 +72,18 @@ func LogShutdown(event, timeToShutdown string) (shutdownLogged bool) {
 	sd = shutdownDate(currentTime)
 
 	var systemShutdown string = logging.SystemShutdown(event, st, sd)
-	println(systemShutdown)
+	err = write.String(systemShutdown, logFile)
+	if err != nil {
+		log.Fatal(err)
+	}
 	//
 	var uptime string = systemUptime()
 	var systemUptime string = logging.SystemUptime(uptime)
 
-	println(systemUptime)
+	err = write.String(systemUptime+"\n", logFile)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	return true
 }
