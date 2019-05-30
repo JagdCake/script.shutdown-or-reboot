@@ -69,6 +69,11 @@ func LogShutdown(event, timeToShutdown string) (shutdownLogged bool) {
 
 	var systemShutdown string = logging.SystemShutdown(event, st, sd)
 	println(systemShutdown)
+	//
+	var uptime string = systemUptime()
+	var systemUptime string = logging.SystemUptime(uptime)
+
+	println(systemUptime)
 
 	return true
 }
