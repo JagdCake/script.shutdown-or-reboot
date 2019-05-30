@@ -1,7 +1,8 @@
 package config
 
 var AppsToClose = map[string]string{
-	"Transmission": "transmission-gtk",
+	// process name is "transmission-gtk" but calling pkill tab-completes without the "k"
+	"Transmission": "transmission-gt",
 	"Firefox":      "firefox",
 	"Steam":        "steam",
 }
